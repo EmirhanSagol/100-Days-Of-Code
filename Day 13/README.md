@@ -1,0 +1,1 @@
+I didn't do a project today. I learned how to debug better, debugging methods and tips
