@@ -32,12 +32,13 @@ def resource_usage(coffee):
 
 
 def coffee_machine():
-    coffee_answer = input("What would you like? (espresso/latte/cappuccino)")
+    coffee_answer = input("What would you like? (espresso/latte/cappuccino): ")
     if coffee_answer == "report":
         report()
     elif coffee_answer == "espresso" or coffee_answer == "latte" or coffee_answer == "cappuccino":
         if not resource_control(MENU[coffee_answer]):
             coffee_machine()
+        print(f"{MENU[coffee_answer]['cost']}$ please")
         total = money_calculation()
         change = round(total - (MENU[coffee_answer]['cost']), 2)
         if change > 0:
