@@ -4,6 +4,7 @@ from Resources import MENU, resources
 def report():
     """Reporting resources on how many resources are left"""
     print(resources)
+    print(f"Profit: {money}$")
 
 
 def money_calculation():
@@ -31,7 +32,10 @@ def resource_usage(coffee):
         resources[item] -= coffee['ingredients'][item]
 
 
-def coffee_machine():
+money = 0.0
+
+
+def coffee_machine(profit=float):
     coffee_answer = input("What would you like? (espresso/latte/cappuccino): ")
     if coffee_answer == "report":
         report()
@@ -45,15 +49,21 @@ def coffee_machine():
             print(f"Here is {change}$ in change.")
             print(f"Here is your {coffee_answer}. Enjoy")
             resource_usage(MENU[coffee_answer])
+            profit += float(MENU[coffee_answer]['cost'])
+            return profit
         elif change == 0:
             print("No change in money.")
             print(f"Here is your {coffee_answer}. Enjoy")
             resource_usage(MENU[coffee_answer])
+            profit += float(MENU[coffee_answer]['cost'])
+            return profit
         else:
             print("Sorry that's not enough money. Money refunded.")
+    elif coffee_answer == "off":
+        quit()
     else:
         print("There is a no such coffee. Try again")
-    coffee_machine()
 
 
-coffee_machine()
+while True:
+    money = coffee_machine(money)
