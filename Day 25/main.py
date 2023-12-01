@@ -20,10 +20,7 @@ while game_is_on:
 
     state_values = (data[data["state"] == input_value])
     if input_value == "Exit":
-        missing_states = []
-        for new_state in all_states:
-            if new_state not in state.states:
-                missing_states.append(new_state)
+        missing_states = [new_state for new_state in all_states if new_state not in state.states]
         new_data = pandas.DataFrame(missing_states)
         new_data.to_csv("states_to_learn")
         break
